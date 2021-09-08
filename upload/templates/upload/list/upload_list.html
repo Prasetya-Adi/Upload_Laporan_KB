@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% block h1 %}
+<H1 class='mt-2'>Daftar Dokumen Laporan</H1>
+{% endblock h1 %}
+
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+
+<table class='table'>
+    <thead>
+        <tr>
+            <td>Nama Kawasan Berikat</td>
+            <td>Jenis Dokumen</td>
+            <td>Tahun</td>
+            <td>Bulan</td>
+            <td>File</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for kb in object_list %}
+        <tr>
+            <td>{{kb.kawasanBerikat}}</td>
+            <td>{{kb.jenisDocument}}</td>
+            <td>{{kb.tahun}}</td>
+            <td>{{kb.bulan}}</td>
+            <td><a href={{kb.pdf.url}} class='btn btn-primary btn-sm' target='_blank'>Download</a></td>
+            <td>
+                <form method='POST' action="{% url 'upload_delete' kb.pk %}">
+                    {% csrf_token %}
+                    <button class='btn btn-danger btn-sm' type='submit' value="Confirm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

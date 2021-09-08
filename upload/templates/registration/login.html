@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Home of Django Upload</title>{% endblock %}
+
+
+{% block content %}
+
+{% block h1 %}
+<H1 class='mt-2'>Log In</H1>
+<form action="" method='post'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type='submit'>Log In</button>
+</form>
+{% endblock h1 %}
+
+{% endblock %}

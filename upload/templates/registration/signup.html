@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Home of Django Upload</title>{% endblock %}
+
+
+{% block content %}
+
+{% block h1 %}
+<H1 class='mt-2'>Sign Up</H1>
+
+<form action="" method='post' class="mt-2">
+    {% csrf_token %}
+
+    {% comment %} {{form.as_p}} {% endcomment %}
+
+    {% for field in form %}
+    <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+    </p>
+    {% endfor %}
+
+    <button type='submit'>Sign Up</button>
+</form>
+{% endblock h1 %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Home of Django Upload</title>{% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1 class='mt-3'>Welcome {{ user.username }}</h1>
+{% else%}
+<h1 class='mt-3'>Welcome Visitor</h1>
+{% endif %}
+
+{% endblock %}

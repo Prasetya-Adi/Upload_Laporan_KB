@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% block h1 %}
+<H1 class='mt-2'>Daftar Data Kawasan Berikat</H1>
+{% endblock h1 %}
+
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<table class='table mt-3'>
+    <thead>
+        <tr>
+            <td>Nama Kawasan Berikat</td>
+            <td>Alamat Kawasan Berikat</td>
+            <td>Kabupaten</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for kb in object_list %}
+        <tr>
+            <td>{{kb.nama_KB}}</td>
+            <td>{{kb.alamat}}</td>
+            <td>{{kb.kabupaten_detail}}</td>
+            <td>
+                <form method='POST' action="{% url 'kawasanberikat_delete' kb.pk %}">
+                    {% csrf_token %}
+                    <button class='btn btn-danger btn-sm' type='submit' value="Confirm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

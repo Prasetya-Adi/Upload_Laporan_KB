@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Home of Django Upload</title>{% endblock %}
+
+
+{% block content %}
+
+{% block h1 %}
+<H1 class='mt-2'>Tambahkan Data Kawasan Berikat</H1>
+{% endblock h1 %}
+
+<div class="card">
+    <h5 class="card-header"></h5>
+    <div class="card-body">
+        <form method='post' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="mb-3">
+                {{form.nama_KB|as_crispy_field}}
+            </div>
+            <div class="mb-3">
+                {{form.alamat|as_crispy_field}}
+            </div>
+            <div class="mb-3">
+                {{form.kabupaten|as_crispy_field}}
+            </div>
+
+            {% comment %} {{form|crispy}} {% endcomment %}
+            <button type="submit" class='btn btn-primary mt-2'>Upload Book</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
